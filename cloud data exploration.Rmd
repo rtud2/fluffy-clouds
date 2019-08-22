@@ -43,3 +43,19 @@ clouds with the most solar radiation, deemed the best. Everyone likes radioactiv
 ```{R}
 cloud_data[order(Solar.R, decreasing = T)]
 ```
+
+## who let the clouds out
+
+```{r}
+plot_dat <- melt(cloud_data[, .SD, .SDcols = -"Day"], id.vars = "Month")
+
+ggplot(data = plot_dat)+
+  geom_boxplot(aes(group = Month, y = value,  fill = Month))+
+  labs(y = "Temperature", title = "Boxplot of Temperature", fill = "Month")+
+  theme(legend.position = "bottom") +
+  facet_wrap(~variable, scale = "free")
+
+```
+
+
+
