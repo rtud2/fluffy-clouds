@@ -44,7 +44,7 @@ clouds with the most solar radiation, deemed the best. Everyone likes radioactiv
 cloud_data[order(Solar.R, decreasing = T)]
 ```
 
-# who let the clouds out
+## who let the clouds out
 
 ```{r}
 plot_dat <- melt(cloud_data[, .SD, .SDcols = -"Day"], id.vars = "Month")
@@ -56,3 +56,6 @@ ggplot(data = plot_dat)+
   facet_wrap(~variable, scale = "free")
 
 ```
+
+
+
