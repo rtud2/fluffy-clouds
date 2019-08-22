@@ -35,5 +35,11 @@ ggplot(data = cloud_data)+
 ```{r}
 cloud_data[is.na(Solar.R), summary(.SD)]
 cloud_data[is.na(Ozone), summary(.SD)]
+```
 
+## The best clouds!
+
+clouds with the most solar radiation, deemed the best. Everyone likes radioactive clouds.
+```{R}
+cloud_data[order(Solar.R, decreasing = T)]
 ```
