@@ -1,0 +1,39 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('data.table')
+library('ggplot2')
+```
+
+## R Markdown
+
+```{r cars}
+cloud_data <- fread("cloud-data.csv")
+head(cloud_data)
+```
+## Summary Stats and EDA
+
+```{r}
+sapply(cloud_data, class)
+summary(cloud_data)
+```
+
+## Including Plots
+
+```{r pressure, echo=FALSE}
+ggplot(data = cloud_data)+
+  geom_point(aes(x = Ozone, y = Solar.R, color = Temp))+
+  facet_grid(.~Month)
+```
+
+## Which are missing? missing at random?
+
+```{r}
+cloud_data[is.na(Solar.R), summary(.SD)]
+cloud_data[is.na(Ozone), summary(.SD)]
+
+```
