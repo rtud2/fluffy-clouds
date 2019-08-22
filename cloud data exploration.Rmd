@@ -47,11 +47,12 @@ cloud_data[order(Solar.R, decreasing = T)]
 # who let the clouds out
 
 ```{r}
-plot_dat <- cloud_data[, .SD, .SDcols = c("Month","Temp")]
+plot_dat <- melt(cloud_data[, .SD, .SDcols = -"Day"], id.vars = "Month")
 
 ggplot(data = plot_dat)+
-  geom_boxplot(aes(group = as.factor(Month), y = Temp,  fill = as.factor(Month)))+
+  geom_boxplot(aes(group = as.factor(Month), y = value,  fill = as.factor(Month)))+
   labs(y = "Temperature", title = "Boxplot of Temperature", fill = "Month")+
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") +
+  facet_wrap(~variable, scale = "free")
 
 ```
